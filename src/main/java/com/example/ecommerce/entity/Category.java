@@ -25,6 +25,10 @@ public class Category {
 	@OneToMany(cascade = CascadeType.ALL)
     private List<Address> items = new ArrayList<>();
 	
+	public Category() {
+		
+	}
+	
 	public Category(String categoryName) {
 		super();
 		this.categoryName = categoryName;
