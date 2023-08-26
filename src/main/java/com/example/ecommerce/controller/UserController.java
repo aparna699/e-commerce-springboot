@@ -51,12 +51,18 @@ public class UserController {
 	public User updateUser(@RequestBody User user, @PathVariable(value = "id") long  userId){
 		User existingUser = this.userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ userId));
-		existingUser.setFirstName(user.getFirstName()!= null ? user.getFirstName(): existingUser.getFirstName());
-		existingUser.setLastName(user.getLastName()!= null ? user.getLastName(): existingUser.getLastName());
-		existingUser.setEmail(user.getEmail() != null ? user.getEmail(): existingUser.getEmail());
-		existingUser.setPassword(user.getPassword() != null ? user.getPassword(): existingUser.getPassword());
-		existingUser.setdOB(user.getdOB() != null ? user.getdOB(): existingUser.getdOB());
-		existingUser.setRole(user.getRole() != null ? user.getRole(): existingUser.getRole());
+		existingUser.setFirstName(user.getFirstName()!= null ? 
+				user.getFirstName(): existingUser.getFirstName());
+		existingUser.setLastName(user.getLastName()!= null ? 
+				user.getLastName(): existingUser.getLastName());
+		existingUser.setEmail(user.getEmail() != null ? 
+				user.getEmail(): existingUser.getEmail());
+		existingUser.setPassword(user.getPassword() != null ? 
+				user.getPassword(): existingUser.getPassword());
+		existingUser.setdOB(user.getdOB() != null ? 
+				user.getdOB(): existingUser.getdOB());
+		existingUser.setRole(user.getRole() != null ? 
+				user.getRole(): existingUser.getRole());
 		
 		
 		return this.userRepository.save(existingUser);

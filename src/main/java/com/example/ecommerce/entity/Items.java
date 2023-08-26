@@ -34,8 +34,8 @@ public class Items {
 	private int price;
 	private int qty;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category_id")
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "category_id", referencedColumnName = "id")
 	private Category categoryId; 
 	
 	private String description;
@@ -48,7 +48,7 @@ public class Items {
 
 	
 	public Items() {
-		
+		super();
 	}
 	
 	public Items(String productName, int price, int qty, Category categoryId, String description) {

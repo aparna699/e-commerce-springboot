@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,7 +30,6 @@ import jakarta.persistence.OneToMany;
 @Table(name="User")
 public class User {
 	@Id
-//	@Column(name="User_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String firstName;

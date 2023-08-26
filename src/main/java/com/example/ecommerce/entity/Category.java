@@ -22,13 +22,22 @@ public class Category {
 	private long id;
 	private String categoryName;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-    private List<Address> items = new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="categoryId")
+    private List<Items> items = new ArrayList<>();
 	
 	public Category() {
-		
+		super();
 	}
 	
+	
+	
+	public Category(long id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public Category(String categoryName) {
 		super();
 		this.categoryName = categoryName;
