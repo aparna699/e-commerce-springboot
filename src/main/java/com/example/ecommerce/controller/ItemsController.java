@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ecommerce.entity.Category;
 import com.example.ecommerce.entity.Items;
 import com.example.ecommerce.entity.User;
 import com.example.ecommerce.exception.ResourceNotFoundException;
@@ -39,13 +40,17 @@ public class ItemsController {
 	
 	//Get Item by Id
 	@GetMapping("api/items/{id}")
-	public Items getitemsById(@PathVariable(value = "id") long  itemsId){
+	public Items getItemsById(@PathVariable(value = "id") long  itemsId){
 		return this.itemsRepository.findById(itemsId)
 				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ itemsId));
 	}
 	
 	//Get Items by category 
-	
+	@GetMapping("api/items/category/{categoryId}")
+	public List<Items> getItemsByCategoryId(@PathVariable(value = "categoryId") long  categoryId){
+		Category category = new Category(categoryId);
+		return this.itemsRepository.findByCategoryId(category);
+	}
 	
 	//Edit Item
 	@PutMapping("api/items/{id}")

@@ -31,17 +31,17 @@ public class CustomerOrder {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@ManyToOne
-	@JoinColumn(name = "User_id")
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "User_id", referencedColumnName = "id")
 	private User userId;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date orderDate;
 	
 	//4.	Payment ID
-	@ManyToOne
-	@JoinColumn(name = "address_id")
-	private User addressId;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private Address addressId;
 
 	private double totalCost;
  
@@ -53,7 +53,7 @@ public class CustomerOrder {
 	private List<OrderLine> orderline = new ArrayList<>();
 
 	
-	public CustomerOrder(User userId, Date orderDate, User addressId, double totalCost, Status statusId) {
+	public CustomerOrder(User userId, Date orderDate, Address addressId, double totalCost, Status statusId) {
 		super();
 		this.userId = userId;
 		this.orderDate = orderDate;
@@ -86,11 +86,11 @@ public class CustomerOrder {
 		this.orderDate = orderDate;
 	}
 
-	public User getAddressId() {
+	public Address getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(User addressId) {
+	public void setAddressId(Address addressId) {
 		this.addressId = addressId;
 	}
 
