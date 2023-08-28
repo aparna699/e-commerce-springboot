@@ -30,6 +30,11 @@ public class CartItem {
 	
 	private int qty;
 
+	
+	public CartItem() {
+		super();
+	}
+
 	public CartItem(User userId, Items itemId, int qty) {
 		super();
 		this.userId = userId;
