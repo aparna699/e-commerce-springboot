@@ -52,8 +52,11 @@ public class CustomerOrder {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<OrderLine> orderline = new ArrayList<>();
 
+	public CustomerOrder() {
+		super();
+	}
 	
-	public CustomerOrder(User userId, Date orderDate, Address addressId, double totalCost, Status statusId) {
+	public CustomerOrder(Date orderDate, Address addressId, double totalCost, Status statusId) {
 		super();
 //		this.userId = userId;
 		this.orderDate = orderDate;

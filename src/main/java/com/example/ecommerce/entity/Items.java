@@ -51,6 +51,13 @@ public class Items {
 		super();
 	}
 	
+	public Items(long id) {
+		super();
+		this.id = id;
+	}
+
+
+
 	public Items(String productName, int price, int qty, Category categoryId, String description) {
 		super();
 		this.productName = productName;

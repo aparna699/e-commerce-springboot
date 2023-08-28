@@ -1,5 +1,6 @@
 package com.example.ecommerce.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +22,8 @@ public class OrderLine {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@ManyToOne
-	@JoinColumn(name = "item_id")
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "item_id",  referencedColumnName = "id")
 	private Items itemId;
 	
 	@ManyToOne
@@ -31,6 +32,10 @@ public class OrderLine {
 	
 	private int qty;
 	private double price;
+	
+	public OrderLine() {
+		super();
+	}
 	
 	public OrderLine(Items itemId, Items orderId, int qty, double price) {
 		super();
