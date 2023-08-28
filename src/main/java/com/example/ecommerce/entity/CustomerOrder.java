@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 //1.	Order ID
 //2.	User ID
 //3.	Order Date
-//4.	Payment ID
+//4.	Payment ID//
 //5.	Address ID
 //6.	Order Total
 //7.	Order Status ID
@@ -31,9 +31,9 @@ public class CustomerOrder {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "User_id", referencedColumnName = "id")
-	private User userId;
+//	@ManyToOne(cascade = CascadeType.MERGE)
+//	@JoinColumn(name = "User_id", referencedColumnName = "id")
+//	private User userId;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date orderDate;
@@ -55,7 +55,7 @@ public class CustomerOrder {
 	
 	public CustomerOrder(User userId, Date orderDate, Address addressId, double totalCost, Status statusId) {
 		super();
-		this.userId = userId;
+//		this.userId = userId;
 		this.orderDate = orderDate;
 		this.addressId = addressId;
 		this.totalCost = totalCost;
@@ -70,13 +70,13 @@ public class CustomerOrder {
 		this.id = id;
 	}
 
-	public User getUserId() {
-		return userId;
-	}
-
-	public void setUserId(User userId) {
-		this.userId = userId;
-	}
+//	public User getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(User userId) {
+//		this.userId = userId;
+//	}
 
 	public Date getOrderDate() {
 		return orderDate;
