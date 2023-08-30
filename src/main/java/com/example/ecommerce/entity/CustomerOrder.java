@@ -47,8 +47,6 @@ public class CustomerOrder {
 
 	private double totalCost;
  
-	@ManyToOne
-	@JoinColumn(name = "status_id")
 	private Status statusId;
 
 	@OneToMany(cascade = CascadeType.ALL)
