@@ -21,6 +21,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String categoryName;
+	private String categoryImgUrl;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="categoryId")
     private List<Items> items = new ArrayList<>();
@@ -36,12 +37,12 @@ public class Category {
 		this.id = id;
 	}
 
-
-
-	public Category(String categoryName) {
+	public Category(String categoryName, String categoryImgUrl) {
 		super();
 		this.categoryName = categoryName;
+		this.categoryImgUrl = categoryImgUrl;
 	}
+
 	public long getId() {
 		return id;
 	}
@@ -53,6 +54,18 @@ public class Category {
 	}
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+
+
+	public String getCategoryImgUrl() {
+		return categoryImgUrl;
+	}
+
+
+
+	public void setCategoryImgUrl(String categoryImgUrl) {
+		this.categoryImgUrl = categoryImgUrl;
 	}
 	
 	

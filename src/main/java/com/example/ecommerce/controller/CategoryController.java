@@ -49,6 +49,8 @@ public class CategoryController {
 				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ categoryId));
 		existingCategory.setCategoryName(category.getCategoryName()!= null ? 
 				category.getCategoryName(): existingCategory.getCategoryName());
+		existingCategory.setCategoryImgUrl(category.getCategoryImgUrl()!= null ? 
+				category.getCategoryImgUrl(): existingCategory.getCategoryImgUrl());
 		return this.categoryRepository.save(existingCategory);
 	}
 	

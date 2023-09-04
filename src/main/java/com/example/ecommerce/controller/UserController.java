@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class UserController {
 	
 	//POST insert users create user
 	@PostMapping("api/users")
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	public User createUser(@RequestBody User user) {
 		String encoded = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPassword(encoded);
@@ -39,6 +41,7 @@ public class UserController {
 	
 	//GET user by ID
 	@GetMapping("api/users/{id}")
+	@PreAuthorize("permitAll()")
 	public User getUserById(@PathVariable(value = "id") long  userId){
 		return this.userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ userId));
