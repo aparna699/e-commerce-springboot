@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecommerce.entity.CartItem;
+import com.example.ecommerce.entity.Category;
+import com.example.ecommerce.entity.Items;
 import com.example.ecommerce.entity.User;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.repository.CartItemRepository;
@@ -38,7 +40,11 @@ public class CartItemController {
 	}
 	
 	//get by user id
-	
+	@GetMapping("api/cart-item/user/{userId}")
+	public List<CartItem> getItemsByUserId(@PathVariable(value = "userId") long  userId){
+		User user = new User(userId);
+		return this.cartItemRepository.findByUserId(user);
+	}
 	//post
 	@PostMapping("api/cart-item")
 	public CartItem createCartItem(@RequestBody CartItem cartItem) {

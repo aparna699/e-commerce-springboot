@@ -33,6 +33,7 @@ public class Items {
 //	private String productImage;
 	private int price;
 	private int qty;
+	private String[] imgUrl;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -43,8 +44,8 @@ public class Items {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<CartItem> cartId = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<OrderLine> orderline = new ArrayList<>();
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private List<OrderLine> orderline = new ArrayList<>();
 
 	
 	public Items() {
@@ -58,11 +59,12 @@ public class Items {
 
 
 
-	public Items(String productName, int price, int qty, Category categoryId, String description) {
+	public Items(String productName, int price, int qty, String[] imgUrl, Category categoryId, String description) {
 		super();
 		this.productName = productName;
 		this.price = price;
 		this.qty = qty;
+		this.imgUrl = imgUrl;
 		this.categoryId = categoryId;
 		this.description = description;
 	}
@@ -114,6 +116,22 @@ public class Items {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public String[] getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String[] imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+//	public List<CartItem> getCartId() {
+//		return cartId;
+//	}
+//
+//	public void setCartId(List<CartItem> cartId) {
+//		this.cartId = cartId;
+//	}
 
 	
 	

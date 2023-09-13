@@ -67,6 +67,8 @@ public class ItemsController {
 				items.getCategoryId(): existingItems.getCategoryId());
 		existingItems.setDescription(items.getDescription()!= null ?
 				items.getDescription(): existingItems.getDescription());
+		existingItems.setImgUrl(items.getImgUrl()!= null ?
+				items.getImgUrl(): existingItems.getImgUrl());
 		return this.itemsRepository.save(existingItems);
 	}
 	

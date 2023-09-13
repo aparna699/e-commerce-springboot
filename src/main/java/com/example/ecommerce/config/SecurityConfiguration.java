@@ -36,13 +36,15 @@ public class SecurityConfiguration {
 	  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	    http
 	    .cors(Customizer.withDefaults())
-//	    	.cors(cors -> cors.disable())
 	    	.csrf(csrf -> csrf.disable())
-//	        .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
 	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	        .authorizeHttpRequests(auth -> 
-	          auth.requestMatchers("/auth","/api/category").permitAll()
-	              .requestMatchers(HttpMethod.GET,"/api/**","api/address/user/**").hasAnyRole("ADMIN","CUSTOMER")
+	          auth.requestMatchers("/auth","/api/category/**","/api/cart-item/user/**","/api/users").permitAll()
+	          	  .requestMatchers(HttpMethod.GET,"/api/items/**").permitAll()
+	          	  .requestMatchers(HttpMethod.POST,"/api/items").permitAll()
+	          	  .requestMatchers(HttpMethod.DELETE,"/api/cart-item/**").hasAnyRole("ADMIN","CUSTOMER")
+	          	  .requestMatchers(HttpMethod.DELETE,"/api/items/**").hasAnyRole("ADMIN")
+	              .requestMatchers(HttpMethod.GET,"/api/**","api/address/user/**","api/cart-item").hasAnyRole("ADMIN","CUSTOMER")
 	              .requestMatchers(HttpMethod.GET,"/api/users/{id}").hasAnyRole("ADMIN","CUSTOMER")
 	              .anyRequest().authenticated()
 	        );

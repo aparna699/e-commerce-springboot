@@ -32,7 +32,8 @@ public class JwtService {
 				.claim("role", role)
 				.claim("id", id)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis()+1000*60*30))//30min
+//				.setExpiration(new Date(System.currentTimeMillis()+1000*60*30))//30min
+				.setExpiration(new Date(System.currentTimeMillis()+30L * 24L * 60L * 60L * 1000L))//30days
 				.signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
 	}
 	
