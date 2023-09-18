@@ -48,6 +48,9 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<CartItem> cartId = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Review> reviewId = new ArrayList<>();
 
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
 //	private List<CustomerOrder> orderId = new ArrayList<>();

@@ -43,6 +43,9 @@ public class Items {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<CartItem> cartId = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Review> reviewId = new ArrayList<>();
 
 //	@OneToMany(cascade = CascadeType.ALL)
 //	private List<OrderLine> orderline = new ArrayList<>();

@@ -1,7 +1,5 @@
 package com.example.ecommerce.config;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,8 +37,9 @@ public class SecurityConfiguration {
 	    	.csrf(csrf -> csrf.disable())
 	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	        .authorizeHttpRequests(auth -> 
-	          auth.requestMatchers("/auth","/api/category/**","/api/cart-item/user/**","/api/users").permitAll()
+	          auth.requestMatchers("/auth","/api/category/**","/api/cart-item/user/**","/api/users","/api/review","/api/review/item/**").permitAll()
 	          	  .requestMatchers(HttpMethod.GET,"/api/items/**").permitAll()
+	          	  .requestMatchers(HttpMethod.PUT, "/api/review/**").permitAll()
 	          	  .requestMatchers(HttpMethod.POST,"/api/items").permitAll()
 	          	  .requestMatchers(HttpMethod.DELETE,"/api/cart-item/**").hasAnyRole("ADMIN","CUSTOMER")
 	          	  .requestMatchers(HttpMethod.DELETE,"/api/items/**").hasAnyRole("ADMIN")
