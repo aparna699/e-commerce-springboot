@@ -28,7 +28,7 @@ public class OrderLine {
 	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
-	private Items orderId;
+	private CustomerOrder orderId;
 	
 	private int qty;
 	private double price;
@@ -37,7 +37,16 @@ public class OrderLine {
 		super();
 	}
 	
-	public OrderLine(Items itemId, Items orderId, int qty, double price) {
+	
+	
+	public OrderLine(long id) {
+		super();
+		this.id = id;
+	}
+
+
+
+	public OrderLine(Items itemId, CustomerOrder orderId, int qty, double price) {
 		super();
 		this.itemId = itemId;
 		this.orderId = orderId;
@@ -56,10 +65,10 @@ public class OrderLine {
 	public void setItemId(Items itemId) {
 		this.itemId = itemId;
 	}
-	public Items getOrderId() {
+	public CustomerOrder getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(Items orderId) {
+	public void setOrderId(CustomerOrder orderId) {
 		this.orderId = orderId;
 	}
 	public int getQty() {

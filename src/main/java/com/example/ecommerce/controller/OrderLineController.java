@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ecommerce.entity.CustomerOrder;
 import com.example.ecommerce.entity.OrderLine;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.repository.OrderLineRepository;
@@ -34,6 +35,11 @@ public class OrderLineController {
 	}
 	
 	//get order-line by order id
+	@GetMapping("api/order-line/orders/{orderId}")
+	public List<OrderLine> getCustomerOrderByOrderId(@PathVariable(value = "orderId") long  orderId){
+		CustomerOrder customerOrder = new CustomerOrder(orderId);
+		return this.orderLineRepository.findByOrderId(customerOrder);
+	}
 	
 	//add order-line
 	@PostMapping("api/order-line")

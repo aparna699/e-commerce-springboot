@@ -37,14 +37,19 @@ public class SecurityConfiguration {
 	    	.csrf(csrf -> csrf.disable())
 	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	        .authorizeHttpRequests(auth -> 
-	          auth.requestMatchers("/auth","/api/category/**","/api/cart-item/user/**","/api/users","/api/review","/api/review/item/**").permitAll()
+	          auth.requestMatchers("/auth","/api/category/**","/api/order-line/orders/**","/api/cart-item/user/**","/api/users","/api/review","/api/review/item/**").permitAll()
 	          	  .requestMatchers(HttpMethod.GET,"/api/items/**").permitAll()
+	          	  .requestMatchers(HttpMethod.GET,"/api/order/**").permitAll()
+	          	.requestMatchers(HttpMethod.GET,"/api/order-line/orders/**").permitAll()
 	          	  .requestMatchers(HttpMethod.PUT, "/api/review/**").permitAll()
+	          	  .requestMatchers(HttpMethod.DELETE, "/api/review/**").hasAnyRole("ADMIN","CUSTOMER")
 	          	  .requestMatchers(HttpMethod.POST,"/api/items").permitAll()
 	          	  .requestMatchers(HttpMethod.DELETE,"/api/cart-item/**").hasAnyRole("ADMIN","CUSTOMER")
 	          	  .requestMatchers(HttpMethod.DELETE,"/api/items/**").hasAnyRole("ADMIN")
+	          	  .requestMatchers(HttpMethod.DELETE,"/api/users/**").permitAll()
 	              .requestMatchers(HttpMethod.GET,"/api/**","api/address/user/**","api/cart-item").hasAnyRole("ADMIN","CUSTOMER")
 	              .requestMatchers(HttpMethod.GET,"/api/users/{id}").hasAnyRole("ADMIN","CUSTOMER")
+	              .requestMatchers(HttpMethod.GET , "/api/order-line/orders/**").permitAll()
 	              .anyRequest().authenticated()
 	        );
 	    

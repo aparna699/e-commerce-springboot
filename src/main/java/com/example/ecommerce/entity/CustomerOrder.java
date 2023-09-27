@@ -56,6 +56,11 @@ public class CustomerOrder {
 		super();
 	}
 	
+	public CustomerOrder(long id) {
+		super();
+		this.id = id;
+	}
+	
 	public CustomerOrder(Date orderDate, Address addressId, double totalCost, Status statusId) {
 		super();
 //		this.userId = userId;

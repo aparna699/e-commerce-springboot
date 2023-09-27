@@ -3,6 +3,8 @@ package com.example.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,6 +59,15 @@ public class ReviewController {
 	@PostMapping("api/review")
 	public Review createReview(@RequestBody Review review) {
 		return this.reviewRepository.save(review);
+	}
+	
+	//delete
+	@DeleteMapping("api/review/{reviewId}")
+	public ResponseEntity<Review> deleteReview(@PathVariable(value = "reviewId") long  reviewId) {
+		Review existingReview = this.reviewRepository.findById(reviewId)
+				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ reviewId));
+		this.reviewRepository.delete(existingReview);
+		return ResponseEntity.ok().build();
 	}
 	
 }
