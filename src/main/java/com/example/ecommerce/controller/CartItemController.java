@@ -68,10 +68,18 @@ public class CartItemController {
 	
 	//delete
 	@DeleteMapping("api/cart-item/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable(value = "id") long  cartItemId) {
+	public ResponseEntity<CartItem> deleteCartItem(@PathVariable(value = "id") long  cartItemId) {
 		CartItem existingCartItem = this.cartItemRepository.findById(cartItemId)
-				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ cartItemId));
+				.orElseThrow(() -> new ResourceNotFoundException("cart item not found with id:"+ cartItemId));
 		this.cartItemRepository.delete(existingCartItem);
+		return ResponseEntity.ok().build();
+	}
+	
+//	//delete
+	@DeleteMapping("api/user-cart-items/{id}")
+	public ResponseEntity<User> deleteUser(@PathVariable(value = "id") User  cartItemId) {
+		List<CartItem> existingCartItem = this.cartItemRepository.findByUserId(cartItemId);
+		this.cartItemRepository.deleteAll(existingCartItem);
 		return ResponseEntity.ok().build();
 	}
 	

@@ -23,12 +23,12 @@ public class OrderLine {
 	private long id;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "item_id",  referencedColumnName = "id")
-	private Items itemId;
-	
-	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private CustomerOrder orderId;
+	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "item_id",  referencedColumnName = "id")
+	private Items itemId;
 	
 	private int qty;
 	private double price;

@@ -34,6 +34,10 @@ public class CartItem {
 	public CartItem() {
 		super();
 	}
+	public CartItem(long id) {
+		super();
+		this.id = id;
+	}
 
 	public CartItem(User userId, Items itemId, int qty) {
 		super();

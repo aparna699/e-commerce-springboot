@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ecommerce.entity.CustomerOrder;
 import com.example.ecommerce.entity.OrderLine;
 import com.example.ecommerce.exception.ResourceNotFoundException;
+import com.example.ecommerce.repository.ItemsRepository;
 import com.example.ecommerce.repository.OrderLineRepository;
+import com.example.ecommerce.entity.Items;
+import com.example.ecommerce.controller.ItemsController;
 
 @RestController
 @RequestMapping("/")
@@ -43,8 +46,8 @@ public class OrderLineController {
 	
 	//add order-line
 	@PostMapping("api/order-line")
-	public OrderLine createOrderLine(@RequestBody OrderLine orderLine) {
-		return this.orderLineRepository.save(orderLine);
+	public List<OrderLine> createOrderLine(@RequestBody List<OrderLine> orderLine) {		
+		return this.orderLineRepository.saveAll(orderLine);
 	}
 	
 	

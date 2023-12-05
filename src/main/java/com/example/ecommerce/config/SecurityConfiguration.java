@@ -37,20 +37,68 @@ public class SecurityConfiguration {
 	    	.csrf(csrf -> csrf.disable())
 	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	        .authorizeHttpRequests(auth -> 
-	          auth.requestMatchers("/auth","/api/category/**","/api/order-line/orders/**","/api/cart-item/user/**","/api/users","/api/review","/api/review/item/**","/cancel-payment-intent/**").permitAll()
-	          	  .requestMatchers(HttpMethod.GET,"/api/items/**").permitAll()
-	          	  .requestMatchers(HttpMethod.GET,"/api/order/**").permitAll()
-	          	.requestMatchers(HttpMethod.GET,"/api/order-line/orders/**").permitAll()
+	          auth.requestMatchers("/auth","/api/review","/api/review/item/**").permitAll()
+	          	  .requestMatchers(HttpMethod.GET,
+	          			  "/api/category",
+	          			  "/api/category/**",
+	          			  "/api/items/**",
+	          			  "/api/order/**",
+	          			  "/api/items",
+	          			  "/api/items/**",
+	          			  "/api/items/category/**",
+	          			  "/api/order-line/**",
+	          			  "/api/users/**",
+	          			  "/api/items/reduceQty/**").permitAll()
+	          	  .requestMatchers(HttpMethod.GET,
+	          			  "/api/users",
+	          			  "/api/users/**",
+	          			  "/api/address/**",
+	            		  "/api/address/user/**",
+	            		  "/api/cart-item", 
+	            		  "api/cart-item/**",
+	            		  "/api/cart-item/user/**",
+	            		  "/api/order/user/**",
+	            		  "/api/users/**",
+	            		  "/api/order-line",
+	            		  "/api/order-line/**",
+	            		  "/api/order-line/orders/**").hasAnyRole("ADMIN","CUSTOMER")
+	          	  .requestMatchers(HttpMethod.GET,
+	          			  "/api/address",
+	          			  "/api/order",
+	          			  "/api/order/**"
+	          			  ).hasAnyRole("ADMIN")
+	          	  //POST
+	          	  .requestMatchers(HttpMethod.POST,
+	          			  "/api/users").permitAll()
+	          	  .requestMatchers(HttpMethod.POST,
+	          			  "/api/address",
+	          			  "/api/cart-item",
+	          			  "/create-payment-intent",
+	          			  "/create-payment-intent/**",
+	          			  "/api/order",
+	          			  "/api/order-line").hasAnyRole("ADMIN","CUSTOMER")
+	          	  .requestMatchers(HttpMethod.POST,
+	          			  "/api/category",
+	          			  "/api/items").hasAnyRole("ADMIN")
+	          	  //PUT
 	          	  .requestMatchers(HttpMethod.PUT, "/api/review/**").permitAll()
-	          	  .requestMatchers(HttpMethod.DELETE, "/api/review/**").hasAnyRole("ADMIN","CUSTOMER")
-	          	  .requestMatchers(HttpMethod.POST,"/create-payment-intent").hasAnyRole("ADMIN","CUSTOMER")
-	          	  .requestMatchers(HttpMethod.POST,"/api/items").permitAll()
-	          	  .requestMatchers(HttpMethod.DELETE,"/api/cart-item/**").hasAnyRole("ADMIN","CUSTOMER")
-	          	  .requestMatchers(HttpMethod.DELETE,"/api/items/**").hasAnyRole("ADMIN")
-	          	  .requestMatchers(HttpMethod.DELETE,"/api/users/**").permitAll()
-	              .requestMatchers(HttpMethod.GET,"/api/**","api/address/user/**","api/cart-item").hasAnyRole("ADMIN","CUSTOMER")
-	              .requestMatchers(HttpMethod.GET,"/api/users/{id}").hasAnyRole("ADMIN","CUSTOMER")
-	              .requestMatchers(HttpMethod.GET , "/api/order-line/orders/**").permitAll()
+	          	  .requestMatchers(HttpMethod.PUT, 
+	          			  "/api/users/**",
+	          			  "/api/address/**",
+	          			  "/api/cart-item/**").hasAnyRole("ADMIN","CUSTOMER")
+	          	  .requestMatchers(HttpMethod.PUT,
+	          			  "/api/category",
+	          			  "/api/items/**").hasAnyRole("ADMIN")
+	          	  //DELETE
+	          	  .requestMatchers(HttpMethod.DELETE, 
+	          			  "/api/users/**",
+	          			  "/api/address/**",
+	          			  "/api/review/**",
+	          			  "/api/cart-item/**").hasAnyRole("ADMIN","CUSTOMER")
+	          	  .requestMatchers(HttpMethod.DELETE,
+	          			  "/api/category/**",
+	          			  "/api/items/**").hasAnyRole("ADMIN")
+	              
 	              .anyRequest().authenticated()
 	        );
 	    

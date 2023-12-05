@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.ecommerce.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -33,11 +34,12 @@ public class CustomerOrder {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-//	@ManyToOne(cascade = CascadeType.MERGE)
-//	@JoinColumn(name = "User_id", referencedColumnName = "id")
-//	private User userId;
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User userId;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+//	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS", timezone="IST")
 	private Date orderDate;
 	
 	//4.	Payment ID
@@ -61,9 +63,9 @@ public class CustomerOrder {
 		this.id = id;
 	}
 	
-	public CustomerOrder(Date orderDate, Address addressId, double totalCost, Status statusId) {
+	public CustomerOrder(User userId,Date orderDate, Address addressId, double totalCost, Status statusId) {
 		super();
-//		this.userId = userId;
+		this.userId = userId;
 		this.orderDate = orderDate;
 		this.addressId = addressId;
 		this.totalCost = totalCost;
@@ -78,13 +80,13 @@ public class CustomerOrder {
 		this.id = id;
 	}
 
-//	public User getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(User userId) {
-//		this.userId = userId;
-//	}
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
 
 	public Date getOrderDate() {
 		return orderDate;

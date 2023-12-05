@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecommerce.entity.Category;
 import com.example.ecommerce.entity.Items;
+import com.example.ecommerce.entity.OrderLine;
 import com.example.ecommerce.entity.User;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.repository.ItemsRepository;
@@ -72,7 +73,15 @@ public class ItemsController {
 		return this.itemsRepository.save(existingItems);
 	}
 	
-	//Delete Item
+	@PutMapping("api/items/reduceQty/{id}")
+	public Items reduceItemsQty(@RequestBody Items items, @PathVariable(value = "id") long itemsId) {
+		Items existingItems = this.itemsRepository.findById(itemsId)
+				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ itemsId));
+		existingItems.setQty(items.getQty()!= 0 ?
+				existingItems.getQty() - items.getQty(): existingItems.getQty());
+		return this.itemsRepository.save(existingItems);
+	}
+	//Delete Itemreturn this.itemsRepository.save(existingItems);
 	@DeleteMapping("api/items/{id}")
 	public ResponseEntity<User> deleteItems(@PathVariable(value = "id")long itemsId){
 		Items existingItems = this.itemsRepository.findById(itemsId)

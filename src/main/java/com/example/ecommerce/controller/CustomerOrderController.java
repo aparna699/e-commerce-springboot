@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecommerce.entity.Address;
 import com.example.ecommerce.entity.CustomerOrder;
+import com.example.ecommerce.entity.User;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.repository.CustomerOrderRepository;
 
@@ -35,10 +36,10 @@ public class CustomerOrderController {
 	}
 	
 	//get user orders
-	@GetMapping("api/order/address/{id}")
+	@GetMapping("api/order/user/{id}")
 	public List<CustomerOrder> getCustomerOrderByAddressId(@PathVariable(value = "id") long  id){
-		Address address = new Address(id);
-		return this.customerOrderRepository.findByAddressId(address);
+		User user = new User(id);
+		return this.customerOrderRepository.findByUserId(user);
 	}
 	
 	//Post create order
