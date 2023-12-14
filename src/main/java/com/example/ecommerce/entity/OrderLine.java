@@ -23,7 +23,7 @@ public class OrderLine {
 	private long id;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "order_id")
+	@JoinColumn(name = "order_id",  referencedColumnName = "id")
 	private CustomerOrder orderId;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)

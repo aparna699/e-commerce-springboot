@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecommerce.entity.CustomerOrder;
 import com.example.ecommerce.entity.OrderLine;
+import com.example.ecommerce.entity.User;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.repository.ItemsRepository;
 import com.example.ecommerce.repository.OrderLineRepository;
@@ -34,7 +35,7 @@ public class OrderLineController {
 	@GetMapping("api/order-line/{id}")
 	public OrderLine getCustomerOrderById(@PathVariable(value = "id") long  orderLineId){
 		return this.orderLineRepository.findById(orderLineId)
-				.orElseThrow(() -> new ResourceNotFoundException("user not found with id:"+ orderLineId));
+				.orElseThrow(() -> new ResourceNotFoundException("id not found with id:"+ orderLineId));
 	}
 	
 	//get order-line by order id
@@ -44,6 +45,12 @@ public class OrderLineController {
 		return this.orderLineRepository.findByOrderId(customerOrder);
 	}
 	
+	//get order-line by user id
+	@GetMapping("api/order-line/user/{userId}")
+	public List<OrderLine> getCustomerOrderByUserId(@PathVariable(value = "userId") long  userId){
+		return this.orderLineRepository.findByUserId(userId);
+	}
+
 	//add order-line
 	@PostMapping("api/order-line")
 	public List<OrderLine> createOrderLine(@RequestBody List<OrderLine> orderLine) {		

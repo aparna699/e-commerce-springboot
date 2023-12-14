@@ -48,7 +48,8 @@ public class SecurityConfiguration {
 	          			  "/api/items/category/**",
 	          			  "/api/order-line/**",
 	          			  "/api/users/**",
-	          			  "/api/items/reduceQty/**").permitAll()
+	          			  "/api/items/reduceQty/**",
+	          			  "/api/order-line/orders/**").permitAll()
 	          	  .requestMatchers(HttpMethod.GET,
 	          			  "/api/users",
 	          			  "/api/users/**",
@@ -61,7 +62,8 @@ public class SecurityConfiguration {
 	            		  "/api/users/**",
 	            		  "/api/order-line",
 	            		  "/api/order-line/**",
-	            		  "/api/order-line/orders/**").hasAnyRole("ADMIN","CUSTOMER")
+//	            		  "/api/order-line/orders/**",
+	            		  "/api/order-line/user/**").hasAnyRole("ADMIN","CUSTOMER")
 	          	  .requestMatchers(HttpMethod.GET,
 	          			  "/api/address",
 	          			  "/api/order",

@@ -42,7 +42,6 @@ public class CustomerOrder {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS", timezone="IST")
 	private Date orderDate;
 	
-	//4.	Payment ID
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address addressId;
@@ -51,6 +50,7 @@ public class CustomerOrder {
  
 	private Status statusId;
 
+	//-------------------
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<OrderLine> orderline = new ArrayList<>();
 

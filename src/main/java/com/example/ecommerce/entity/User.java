@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 //1.	User ID
@@ -54,6 +55,7 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<CustomerOrder> orderId = new ArrayList<>();
+	
 	
 	public User() {
 		

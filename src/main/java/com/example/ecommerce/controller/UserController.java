@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ecommerce.entity.OrderLine;
 import com.example.ecommerce.entity.User;
 import com.example.ecommerce.exception.ResourceNotFoundException;
 import com.example.ecommerce.repository.UserRepository;
@@ -77,4 +78,6 @@ public class UserController {
 		this.userRepository.delete(existingUser);
 		return ResponseEntity.ok().build();
 	}
+	
+	
 }
