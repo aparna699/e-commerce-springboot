@@ -48,7 +48,6 @@ public class SecurityConfiguration {
 	          			  "/api/items/category/**",
 	          			  "/api/order-line/**",
 	          			  "/api/users/**",
-	          			  "/api/items/reduceQty/**",
 	          			  "/api/order-line/orders/**").permitAll()
 	          	  .requestMatchers(HttpMethod.GET,
 	          			  "/api/users",
@@ -83,7 +82,9 @@ public class SecurityConfiguration {
 	          			  "/api/category",
 	          			  "/api/items").hasAnyRole("ADMIN")
 	          	  //PUT
-	          	  .requestMatchers(HttpMethod.PUT, "/api/review/**").permitAll()
+	          	  .requestMatchers(HttpMethod.PUT, 
+	          			  "/api/review/**",
+	          			"/api/items/reduceQty/**").permitAll()
 	          	  .requestMatchers(HttpMethod.PUT, 
 	          			  "/api/users/**",
 	          			  "/api/address/**",
